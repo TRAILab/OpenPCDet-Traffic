@@ -45,6 +45,7 @@ OpenPCDet
 * Generate the data infos by running the following command:
 ```python
 python -m pcdet.datasets.traffic.traffic_dataset create_traffic_infos tools/cfgs/dataset_configs/traffic_dataset.yaml
+```
 
 ### NuScenes Dataset
 * Please download the official [NuScenes 3D object detection dataset](https://www.nuscenes.org/download) and

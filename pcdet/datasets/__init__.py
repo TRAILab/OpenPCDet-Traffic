@@ -7,7 +7,7 @@ from pcdet.utils import common_utils
 from .dataset import DatasetTemplate
 from .kitti.kitti_dataset import KittiDataset
 from .nuscenes.nuscenes_dataset import NuScenesDataset
-from .traffic.traffic_dataset import KittiDataset
+from .traffic.traffic_dataset import TrafficDataset
 
 __all__ = {
     'DatasetTemplate': DatasetTemplate,

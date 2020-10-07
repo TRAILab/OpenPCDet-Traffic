@@ -25,7 +25,6 @@ def create_traffic_infos(dataset_cfg, class_names, data_path, save_path, workers
     train_filename = save_path / ('traffic_infos_%s.pkl' % train_split)
     val_filename = save_path / ('traffic_infos_%s.pkl' % val_split)
     trainval_filename = save_path / 'traffic_infos_trainval.pkl'
-    test_filename = save_path / 'traffic_infos_test.pkl'
 
     print('---------------Start to generate data infos---------------')
 
@@ -45,16 +44,6 @@ def create_traffic_infos(dataset_cfg, class_names, data_path, save_path, workers
         pickle.dump(traffic_infos_train + traffic_infos_val, f)
     print('Kitti info trainval file is saved to %s' % trainval_filename)
 
-    dataset.set_split('test')
-    traffic_infos_test = dataset.get_infos(num_workers=workers, has_label=False, count_inside_pts=False)
-    with open(test_filename, 'wb') as f:
-        pickle.dump(traffic_infos_test, f)
-    print('Kitti info test file is saved to %s' % test_filename)
-
-    print('---------------Start create groundtruth database for data augmentation---------------')
-    dataset.set_split(train_split)
-    dataset.create_groundtruth_database(train_filename, split=train_split)
-
     print('---------------Data preparation Done---------------')
 
 
@@ -69,6 +58,6 @@ if __name__ == '__main__':
         create_traffic_infos(
             dataset_cfg=dataset_cfg,
             class_names=['Car', 'Pedestrian', 'Truck'],
-            data_path=ROOT_DIR / 'data' / 'traffic-long',
-            save_path=ROOT_DIR / 'data' / 'traffic-long'
+            data_path=ROOT_DIR / 'data' / 'traffic',
+            save_path=ROOT_DIR / 'data' / 'traffic'
         )

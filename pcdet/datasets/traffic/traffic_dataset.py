@@ -32,17 +32,17 @@ def create_traffic_infos(dataset_cfg, class_names, data_path, save_path, workers
     traffic_infos_train = dataset.get_infos(num_workers=workers, has_label=True, count_inside_pts=True)
     with open(train_filename, 'wb') as f:
         pickle.dump(traffic_infos_train, f)
-    print('Kitti info train file is saved to %s' % train_filename)
+    print('Traffic info train file is saved to %s' % train_filename)
 
     dataset.set_split(val_split)
-    kitti_infos_val = dataset.get_infos(num_workers=workers, has_label=True, count_inside_pts=True)
+    traffic_infos_val = dataset.get_infos(num_workers=workers, has_label=True, count_inside_pts=True)
     with open(val_filename, 'wb') as f:
-        pickle.dump(kitti_infos_val, f)
-    print('Kitti info val file is saved to %s' % val_filename)
+        pickle.dump(traffic_infos_val, f)
+    print('Traffic info val file is saved to %s' % val_filename)
 
     with open(trainval_filename, 'wb') as f:
         pickle.dump(traffic_infos_train + traffic_infos_val, f)
-    print('Kitti info trainval file is saved to %s' % trainval_filename)
+    print('Traffic info trainval file is saved to %s' % trainval_filename)
 
     print('---------------Data preparation Done---------------')
 

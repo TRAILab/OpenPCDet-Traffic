@@ -84,6 +84,12 @@ python -m pcdet.datasets.nuscenes.nuscenes_dataset --func create_nuscenes_infos 
 python test.py --cfg_file ${CONFIG_FILE} --batch_size ${BATCH_SIZE} --ckpt ${CKPT}
 ```
 
+* For example, for testing with the above provided `PointPillar` model on the Traffic Dataset, please run the following command:
+
+```shell script
+python test.py --cfg_file cfgs/traffic_models/pointpillar.yaml --batch_size 4 --ckpt ../checkpoints/pointpillar-traffic.pth
+```
+
 * To test all the saved checkpoints of a specific training setting and draw the performance curve on the Tensorboard, add the `--eval_all` argument:
 ```shell script
 python test.py --cfg_file ${CONFIG_FILE} --batch_size ${BATCH_SIZE} --eval_all

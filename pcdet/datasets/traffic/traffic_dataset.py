@@ -1,6 +1,8 @@
 import pickle
+import copy
 
 from ..kitti.kitti_dataset import KittiDataset
+from ..traffic.traffic_object_eval_python import eval as traffic_eval
 
 
 class TrafficDataset(KittiDataset):
@@ -16,6 +18,16 @@ class TrafficDataset(KittiDataset):
         super().__init__(
             dataset_cfg=dataset_cfg, class_names=class_names, training=training, root_path=root_path, logger=logger
         )
+
+    def evaluation(self, det_annos, class_names, **kwargs):
+        if 'annos' not in self.kitti_infos[0].keys():
+            return None, {}
+
+        eval_det_annos = copy.deepcopy(det_annos)
+        eval_gt_annos = [copy.deepcopy(info['annos']) for info in self.kitti_infos]
+        ap_result_str, ap_dict = traffic_eval.get_official_eval_result(eval_gt_annos, eval_det_annos, class_names)
+
+        return ap_result_str, ap_dict
 
 
 def create_traffic_infos(dataset_cfg, class_names, data_path, save_path, workers=4):

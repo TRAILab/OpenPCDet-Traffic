@@ -1,11 +1,11 @@
 # Getting Started
-The dataset configs are located within [tools/cfgs/dataset_configs](../tools/cfgs/dataset_configs), 
-and the model configs are located within [tools/cfgs](../tools/cfgs) for different datasets. 
+The dataset configs are located within [tools/cfgs/dataset_configs](../tools/cfgs/dataset_configs),
+and the model configs are located within [tools/cfgs](../tools/cfgs) for different datasets.
 
 
 ## Dataset Preparation
 
-Currently we provide the dataloader of KITTI dataset and NuScenes dataset, and the supporting of more datasets are on the way.  
+Currently we provide the dataloader of KITTI dataset and NuScenes dataset, and the supporting of more datasets are on the way.
 
 ### KITTI Dataset
 * Please download the official [KITTI 3D object detection](http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d) dataset and organize the downloaded files as follows (the road planes could be downloaded from [[road plane]](https://drive.google.com/file/d/1d5mq0RXRnvHPVeKx6Q612z0YRO1t2wAp/view?usp=sharing), which are optional for data augmentation in the training):
@@ -24,14 +24,31 @@ OpenPCDet
 ├── tools
 ```
 
-* Generate the data infos by running the following command: 
-```python 
+* Generate the data infos by running the following command:
+```python
 python -m pcdet.datasets.kitti.kitti_dataset create_kitti_infos tools/cfgs/dataset_configs/kitti_dataset.yaml
 ```
 
+### Traffic Dataset
+* Please download the Traffic Dataset (Currently Unavailable) and organize the downloaded files as follows:
+```
+OpenPCDet
+├── data
+│   ├── kitti
+│   │   │── ImageSets
+│   │   │── training
+│   │   │   ├──calib & velodyne & label_2 & image_2
+├── pcdet
+├── tools
+```
+
+* Generate the data infos by running the following command:
+```python
+python -m pcdet.datasets.traffic.traffic_dataset create_traffic_infos tools/cfgs/dataset_configs/traffic_dataset.yaml
+
 ### NuScenes Dataset
-* Please download the official [NuScenes 3D object detection dataset](https://www.nuscenes.org/download) and 
-organize the downloaded files as follows: 
+* Please download the official [NuScenes 3D object detection dataset](https://www.nuscenes.org/download) and
+organize the downloaded files as follows:
 ```
 OpenPCDet
 ├── data
@@ -40,19 +57,19 @@ OpenPCDet
 │   │   │   │── samples
 │   │   │   │── sweeps
 │   │   │   │── maps
-│   │   │   │── v1.0-trainval  
+│   │   │   │── v1.0-trainval
 ├── pcdet
 ├── tools
 ```
 
-* Install the `nuscenes-devkit` with version `1.0.5` by running the following command: 
+* Install the `nuscenes-devkit` with version `1.0.5` by running the following command:
 ```shell script
 pip install nuscenes-devkit==1.0.5
 ```
 
-* Generate the data infos by running the following command (it may take several hours): 
-```python 
-python -m pcdet.datasets.nuscenes.nuscenes_dataset --func create_nuscenes_infos \ 
+* Generate the data infos by running the following command (it may take several hours):
+```python
+python -m pcdet.datasets.nuscenes.nuscenes_dataset --func create_nuscenes_infos \
     --cfg_file tools/cfgs/dataset_configs/nuscenes_dataset.yaml \
     --version v1.0-trainval
 ```
@@ -61,12 +78,12 @@ python -m pcdet.datasets.nuscenes.nuscenes_dataset --func create_nuscenes_infos 
 
 
 ### Test and evaluate the pretrained models
-* Test with a pretrained model: 
+* Test with a pretrained model:
 ```shell script
 python test.py --cfg_file ${CONFIG_FILE} --batch_size ${BATCH_SIZE} --ckpt ${CKPT}
 ```
 
-* To test all the saved checkpoints of a specific training setting and draw the performance curve on the Tensorboard, add the `--eval_all` argument: 
+* To test all the saved checkpoints of a specific training setting and draw the performance curve on the Tensorboard, add the `--eval_all` argument:
 ```shell script
 python test.py --cfg_file ${CONFIG_FILE} --batch_size ${BATCH_SIZE} --eval_all
 ```
@@ -78,20 +95,20 @@ sh scripts/dist_test.sh ${NUM_GPUS} \
 
 # or
 
-sh scripts/slurm_test_mgpu.sh ${PARTITION} ${NUM_GPUS} \ 
+sh scripts/slurm_test_mgpu.sh ${PARTITION} ${NUM_GPUS} \
     --cfg_file ${CONFIG_FILE} --batch_size ${BATCH_SIZE}
 ```
 
 
 ### Train a model
-You could optionally add extra command line parameters `--batch_size ${BATCH_SIZE}` and `--epochs ${EPOCHS}` to specify your preferred parameters. 
-  
+You could optionally add extra command line parameters `--batch_size ${BATCH_SIZE}` and `--epochs ${EPOCHS}` to specify your preferred parameters.
+
 
 * Train with multiple GPUs or multiple machines
 ```shell script
 sh scripts/dist_train.sh ${NUM_GPUS} --cfg_file ${CONFIG_FILE}
 
-# or 
+# or
 
 sh scripts/slurm_train.sh ${PARTITION} ${JOB_NAME} ${NUM_GPUS} --cfg_file ${CONFIG_FILE}
 ```

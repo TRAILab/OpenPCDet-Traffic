@@ -34,7 +34,7 @@ python -m pcdet.datasets.kitti.kitti_dataset create_kitti_infos tools/cfgs/datas
 ```
 OpenPCDet
 ├── data
-│   ├── kitti
+│   ├── traffic
 │   │   │── ImageSets
 │   │   │── training
 │   │   │   ├──calib & velodyne & label_2 & image_2

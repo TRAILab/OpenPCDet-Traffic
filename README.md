@@ -108,7 +108,7 @@ All models are trained with 8 GTX 1080Ti GPUs and are available for download.
 
 ### Traffic 3D Object Detection Baselines
 The PointPillar method is trained on the Traffic dataset, and the results are are the 3D detection on the *val* set.
-The model is trained with 1 GPU.
+The model is trained with 1 TITAN XP GPU.
 
 |                                             | training time | Car     | Pedestrian| Truck | Model     |
 |---------------------------------------------|:-------------:|:-------:|:-------:|:-------:|:---------:|

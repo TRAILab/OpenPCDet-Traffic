@@ -112,7 +112,7 @@ The model is trained with 1 TITAN XP GPU.
 
 |                                             | training time | Car     | Pedestrian| Truck | Model     |
 |---------------------------------------------|:-------------:|:-------:|:-------:|:-------:|:---------:|
-| [PointPillar](tools/cfgs/traffic_models/pointpillar.yaml)   | ~8hours | 77.030  | 61.665  | 79.808    | [model](https://drive.google.com/file/d/1dx_u5dU0jBBR8ZaM1vDSMRCR4opL8A3Q/view?usp=sharing) |
+| [PointPillar](tools/cfgs/traffic_models/pointpillar.yaml)   | ~8hours | 76.57  | 32.42  | 82.62    | [model](https://drive.google.com/file/d/12v0YfloXqVhUDf1tSq0A_cilIkdUK_T5/view?usp=sharing) |
 
 ### Other datasets
 More datasets are on the way.
